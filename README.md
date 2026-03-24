@@ -2,7 +2,7 @@ Setup
 
 1. Create a new github project using this template
 
-2. Run this set of commands to set up wsl environment, instructions can also be found on Zephyr website
+2. Run this set of commands to set up wsl environment, instructions can also be found on Zephyr website: https://docs.zephyrproject.org/latest/develop/getting_started/index.html
 
 ```
 sudo apt update
@@ -10,20 +10,22 @@ sudo apt install python3
 sudo apt install --no-install-recommends git cmake ninja-build gperf \
   ccache dfu-util device-tree-compiler wget python3-dev python3-venv python3-tk \
   xz-utils file make gcc gcc-multilib g++-multilib libsdl2-dev libmagic1
-mkdir generate-firmware
-cd generate-firmware
+mkdir project-name
+cd project-name
 python3 -m venv .venv
 source .venv/bin/activate
 pip install west
 cd ..
-west init -m [YOUR PROJECT'S SSH GITHUB LINK] generate-firmware/
-cd generate-firmware
+west init -m [YOUR PROJECT'S SSH GITHUB LINK] project-name/
+cd project-name
+// some of these install steps could take a while, maybe up to 30 minutes
 west update
 west zephyr-export
 west packages pip --install
 cd zephyr
-west sdk install # this step will take a while to download and install
+west sdk install
 cd ..
+// this is specific to espressif SoCs, to find the corct one for your hardware, go to <project-name>/zephyr/west.yml and ctrl+f your vendor or whatever else you are looking to install
 west blobs fetch hal_espressif
 ```
 Note: to install wsl, open powershell as admin and run " wsl --install "
