@@ -1,8 +1,8 @@
-Setup
+# Setup
 
-1. Create a new github project using this template
+### 1. Create a new github project using this template
 
-2. Run this set of commands to set up wsl environment, instructions can also be found on Zephyr website: https://docs.zephyrproject.org/latest/develop/getting_started/index.html
+### 2. Run this set of commands to set up wsl environment, instructions can also be found on Zephyr website: https://docs.zephyrproject.org/latest/develop/getting_started/index.html
 
 ```
 sudo apt update
@@ -33,13 +33,14 @@ Note: to install wsl, open powershell as admin and run " wsl --install "
 
 
 
-Port Forwarding
+# Port Forwarding
 
 Note: You will need to forward access of ports to wsl if you want to flash and use a serial monitor in wsl. This is because windows maintain permissions over the ports until you change them.
 
 Extra note: for this to work, udev rules will need to be modified once permission is forwarded
 
-1. Run this set of commands for port forwarding
+
+### 1. Run this set of commands for port forwarding
 ```
 // In powershell: 
 	winget install --interactive --exact dorssel.usbipd-win
@@ -62,7 +63,7 @@ Extra note: for this to work, udev rules will need to be modified once permissio
 // In powershell as admin:
 	usbipd wsl detach --busid <BUSID> (You should run this every time you are done or unplug to give access back to windows)
 ```
-2. Run this set of commands for modifying udev rules
+### 2. Run this set of commands for modifying udev rules
 ```
 // (go to this file in wsl)
 sudo nano /etc/udev/rules.d/49-stlinkv2.rules
