@@ -11,7 +11,8 @@ project(firepod)
 target_sources(app PRIVATE src/main.c)
 
 
-''' Example from my capstone project:
+#[[
+Example from my capstone project:
 cmake_minimum_required(VERSION 3.22)
 
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
@@ -32,4 +33,4 @@ target_sources(app PRIVATE
     src/bme688_stubs.c
     src/bosch/BME68x_SensorAPI/bme68x.c
 )
-'''
+]]
