@@ -1,11 +1,35 @@
+
+cmake_minimum_required(VERSION 3.20)
+
+# for global installs
+find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
+
+# populated the $PROJECT_NAME var and this is what the output files are named 
+project(firepod)
+
+# app is a predesignated target that zephyr uses
+target_sources(app PRIVATE src/main.c)
+
+
+''' Example from my capstone project:
 cmake_minimum_required(VERSION 3.22)
 
-set(ZEPHYR_TOOLCHAIN_VARIANT zephyr)
-## had to set this for esp32 to be able to correctly create the .elf file
-##set(CMAKE_OBJCOPY $ENV{HOME}/zephyr-sdk-0.17.2/xtensa-espressif_esp32_zephyr-elf/bin/xtensa-espressif_esp32_zephyr-elf-objcopy)
-
 find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
-project(app)
+project(firepod)
 
-# this didn't work when this was called app. It must be called app because... TO-DO...
-target_sources(app PRIVATE src/main.c)
+# Include dirs so the Bosch API header is visible
+target_include_directories(app PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/bosch/BME68x_SensorAPI
+)
+
+# All source files, including the Bosch driver and your stubs
+target_sources(app PRIVATE
+    src/main.c
+    src/sensor_thread.c
+    src/lora_thread.c
+    src/base_station_thread.c
+    src/bme688_stubs.c
+    src/bosch/BME68x_SensorAPI/bme68x.c
+)
+'''
