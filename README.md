@@ -81,7 +81,7 @@ sudo udevadm trigger
 3. Now you should be ready to flash
 
 
-# Navigating the devicetree
+# Utilizing the devicetree
 
 Note: The Devicetree HOWTOs is a more formal collection of tips: https://docs.zephyrproject.org/latest/build/dts/howtos.html
 
