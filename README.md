@@ -137,3 +137,18 @@ leds: leds {
 };
 ```
 
+# Mono-repo Setup
+1. If you want to have multiple projects in the same repo, set it up like this:
+```c
+sandbox
+	| - modules/
+	| - sandbox-fw/
+		| - boards/
+		| - projects/
+			| - proj1
+			| - proj2
+		| - west.yml
+	| - zephyr/
+
+```
+Note: Each project should have their own CMakeLists.txt, so you should be able to build in each project directory and not worry about the other projects dependencies interfering
